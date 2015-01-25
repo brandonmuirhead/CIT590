@@ -188,5 +188,6 @@ def finalSummary(starved, acres_owned):
 	else:
 		print '\nYou were not a good leader. May your teeth become wood.'
 
+
 if __name__ == "__main__":
 	Hammurabi()
