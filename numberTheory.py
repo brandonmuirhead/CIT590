@@ -26,7 +26,12 @@ def main():
 	if isPrime(number): 
 		print number, 'is prime, '
 	else: 
-		print number, 'is not prime,'
+		print number, 'is not prime, '
+
+	if isComposite(number):
+		print 'is composite, '
+	else:
+		print 'is not composite, '
 
 def isPrime(x):
 	'''Checks whether or not an inputted number is prime. Returns boolean.'''
@@ -36,6 +41,12 @@ def isPrime(x):
 			return False						#q = x / p which also divides x, and q < sqrt(x)
 	return True
 
+def isComposite(x):
+	'''Checks whether or not a number is a composite. Returns boolean.'''
+	if x < 2 or isPrime(x) is True:
+		return False
+	return True
+	
 def isInt(x):
 	'''Checks if x is an integer or not. Returns boolean.'''
 	return x == int(x)
