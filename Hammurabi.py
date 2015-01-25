@@ -1,5 +1,5 @@
 #Hammurabi.py
-#A game of strategy, skill, and a little luck.
+#A game of strategy and luck.
 #written by Brandon Muirhead, January 2015
 
 
