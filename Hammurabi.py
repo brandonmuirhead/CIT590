@@ -74,7 +74,7 @@ def Hammurabi():
 		population = population - plague_deaths
 		
 		if numStarving(population, bushels_feed) is None:
-			quit()
+			break		##should be break or something that sends to end game
 		else:
 			starved = numStarving(population, bushels_feed)
 			population = population - starved
@@ -180,7 +180,7 @@ def priceOfLand():
 	
 def finalSummary(starved, acres_owned):
 	'''Final messages after completed 10th round based on performance.'''
-	print '\nYou have completed your term in office!'
+	print '\nYour term of office is complete!'
 	if starved < 50 and acres_owned > 1500:
 		print '\nYou were an historic leader. Monuments have been erected in your likeness!'
 	elif starved < 100 and acres_owned > 1000:
