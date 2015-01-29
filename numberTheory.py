@@ -36,9 +36,9 @@ def main():
 def isPrime(x):
 	'''Checks whether or not an inputted number is prime. Returns boolean.'''
 	if x < 2: return False
-	for n in range(2,int(round(sqrt(x)))):		#only need to go up to sqrt(x) since if there exists a number
-		if x % n == 0:							#p > sqrt(x) that divides x, then there must also be a number 
-			return False						#q = x / p which also divides x, and q < sqrt(x)
+	for i in range(2, x):
+		if x % i == 0:		
+			return False
 	return True
 
 def isComposite(x):
@@ -46,7 +46,16 @@ def isComposite(x):
 	if x < 2 or isPrime(x) is True:
 		return False
 	return True
-	
+
+def isPerfect(x):
+	'''Determines whether a number is the sum of its factors. Returns boolean.'''
+	sum_factor = 0
+	if x < 2: return False
+	for i in range(1, x):
+		if x % i == 0
+			sum_factor += i
+	return sum_factor == x
+
 def isInt(x):
 	'''Checks if x is an integer or not. Returns boolean.'''
 	return x == int(x)
