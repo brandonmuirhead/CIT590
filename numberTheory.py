@@ -52,9 +52,38 @@ def isPerfect(x):
 	sum_factor = 0
 	if x < 2: return False
 	for i in range(1, x):
-		if x % i == 0
+		if x % i == 0:
 			sum_factor += i
 	return sum_factor == x
+	
+def isAbundant(x):
+	'''Determines whether a number is abundant. Returns boolean.'''
+	sum_factor = 0
+	for i in range (1, x):
+		if x % i == 0:
+			sum_factor += i
+	return sum_factor > x
+	
+def isTriangular(x):
+	'''Determines whether a number is triangular. Returns boolean.'''
+	
+
+def quad_int(a, b, c):
+	'''Determines if a quadratic equation returns at least one integer value.'''
+	#a*x**2 + b*x + c = 0	
+	
+	d = b**2-4*a*c # discriminant
+
+	if d < 0:
+		return False
+	else: # if d >= 0
+		plus = (-b + math.sqrt(d)) / (2*a)
+		minus = (-b - math.sqrt(d)) / (2*a)
+	
+	if	isInt(plus) or isInt(minus):
+		return True
+	else: 
+		return False	
 
 def isInt(x):
 	'''Checks if x is an integer or not. Returns boolean.'''
