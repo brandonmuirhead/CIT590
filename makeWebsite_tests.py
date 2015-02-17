@@ -11,10 +11,9 @@ class Test_makeWebsite(unittest.TestCase):
         self.fileName = 'testresume.txt'
     
     def test_detect_name(self):
-    	#name = detectName(fileName)
-    	self.assertEquals("Brandon K. Muirhead",detectName(self.fileName))
-    	self.assertNotEqual('The first line has to be the name with proper capitalization.',detectName(self.fileName))
-        
+    	name = detectName(self.fileName)
+    	self.assertEqual("Brandon K. Muirhead",name)
+    	self.assertNotEqual('The first line has to be the name with proper capitalization.',name)
         
         
 
