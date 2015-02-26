@@ -3,13 +3,6 @@ import random  # needed for shuffling a Deck
 class Card(object):
 	
 	def __init__(self, r, s):
-		Rank = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
-		Suit = ['S', 'C', 'H', 'D']
-		
-		if r not in Rank:
-			raise ValueError, 'Rank must be number 2-10 or "J", "Q", "K", or "A"'
-		if s not in Suit:
-			raise ValueError, 'Suit options are "S", "C", "H", or "D"'
 		self.r = r
 		self.s = s
 		
@@ -26,11 +19,10 @@ class Card(object):
 		return self.s
 		
 class Deck():
-	'''Denote a deck to play cards with'''
 	
 	def __init__(self):
-		'''Initialize deck as a list of all 52 cards: 13 cards in each of 4 suits'''
-		rank = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
+		'''Initializes deck as a list of all 52 cards: 13 cards in each of 4 suits'''
+		rank = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
 		suit = ['S', 'C', 'H', 'D']
 		self.__deck = []
 		
@@ -41,13 +33,14 @@ class Deck():
 	
 	def shuffle(self):
 		'''Shuffle the deck'''
-		self.__deck = random.shuffle(self.__deck)
+		random.shuffle(self.__deck)
+		return self.__deck
 		
 	def get_deck(self):
 		return self.__deck
 		
-	###def deal(self):
-		###return self.__deck.pop()
+	def deal(self):
+		return self.__deck.pop()
 		
 	def __str__(self):
 		'''Represents the whole deck as a string for printing'''
@@ -62,9 +55,10 @@ class Deck():
 		return stringList 
 
 def main():
-	print "hello"
 	deck1 = Deck()
+	deck1.shuffle()
 	print deck1
+
 	 
 
 
