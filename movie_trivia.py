@@ -1,4 +1,6 @@
-#use these first 2 functions to create your 2 dictionaries
+#movie_trivia.py
+#author - Brandon Muirhead
+
 import csv
 def create_actors_DB(actor_file):
     '''Create a dictionary keyed on actors from a text file'''
@@ -98,7 +100,7 @@ def critics_darling(movie_Db, ratings_Db):
 	top_score = 0
 	for i in movie_Db.iterkeys():
 		count = 0
-		movie_list = select_where_actor_is(i, movie_Db)
+		movie_list = select_where_actor_is(i, movie_Db)	#list of movies for each actor
 		movie_sum = 0
 		for j in movie_list:
 			if ratings_Db.has_key(j) == 1:
@@ -139,6 +141,13 @@ def good_movies(ratings_Db):
 	common = set(audienceList).intersection(criticList)
 	return common
 
+def get_common_actors(movie1, movie2, movies_Db):
+	'''Given a pair of movies, return a list of actors that acted in both.'''
+	movie1List = select_where_movie_is(movie1, movies_Db)
+	movie2List = select_where_movie_is(movie2, movies_Db)
+	common = set(movie1List).intersection(movie2List)
+	return list(common)
+
 def flatten2DList(x):
 	'''Convert a list of lists into a 1D list.'''
 	res = []
@@ -146,21 +155,67 @@ def flatten2DList(x):
 		res.extend(i)
 	return res
 
-
+def checkName(name, actor_DB):
+	lowerName = name.lower()
+	fixedName = lowerName.title()
+	while fixedName not in actor_DB.iterkeys():
+		print 'not present'
+		name = raw_input('Please input a name again: ')
+	return fixedName
 	
 def main():
 	actor_DB = create_actors_DB('movies.txt')
 	ratings_DB = create_ratings_DB('moviescores.csv')
 	
-	print 'Welcome to the actor and movie database.'
+	print '\nWelcome to the actor and movie database.'
 	print 'This database contains actor info and movie ratings.'
-	print '\n'
-   
+	
+	choice = 0
+	while choice != '8':
+		print '''\nYou have the following choices: 
+	1. Find out who has acted with a given actor.
+	2. Find out what movies an actor has been in.
+	3. Find out which movies two actors have been in together.
+	4. Find out who is the most critically acclaimed actor.
+	5. Find out who is the most well-loved actor by audiences.
+	6. Get a list of highly rated movies.
+	7. Given a pair of movies, see which actors appeared in both.
+	8. Exit the program.\n'''
+		choice = raw_input("What option would you like to see? ")
+		if choice == '1':
+			actorName = raw_input('For which actor do you want to see a group of co-actors? ')
+			name = checkName(actorName, actor_DB)
+			print get_co_actors(name, actor_DB)
+		elif choice == '2':
+			actorName = raw_input('For which actor do you want to see a list of movies? ')
+			name = checkName(actorName, actor_DB)
+			print select_where_actor_is(name, actor_DB)
+		elif choice == '3':
+			actor1 = raw_input('Choose the first actor: ')
+			actor1 = checkName(actor1, actor_DB)
+			actor2 = raw_input('Choose the second actor: ')
+			actor2 = checkName(actor2, actor_DB)
+			print get_common_movie(actor1, actor2, actor_DB)
+		elif choice == '4':
+			print critics_darling(actor_DB, ratings_DB)
+		elif choice == '5':
+			print audience_darling(actor_DB, ratings_DB)
+		elif choice == '6':
+			print list(good_movies(ratings_DB))
+		elif choice == '7':
+			movie1 = raw_input('Choose the first movie: ')
+			movie1 = checkName(movie1, ratings_DB)
+			movie2 = raw_input('Choose the second movie: ')
+			movie2 = checkName(movie2, ratings_DB)
+			print get_common_actors(movie1, movie2, actor_DB)
+		elif choice == '8':
+			break
+		else:
+			print 'Please input number between 1-8\n'
+
+	print 'Goodbye'		
     
-    
-    
-    
-    
+
     
 if __name__ == '__main__':
     main()

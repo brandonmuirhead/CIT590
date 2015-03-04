@@ -10,12 +10,14 @@ class Test_cards(unittest.TestCase):
 		self.card1 = Card(2, 'C')
 		self.card2 = Card('A', 'H')
 		self.card3 = Card(10, 'D')
+		self.card4 = Card(10, 'd')
 		self.deck1 = Deck()
 	
 	def test_Creation(self):
 		'''tests the init method'''
 		self.assertEqual(str(self.card1), str(Card(2, 'C')))
 		self.assertEqual(str(self.card2), str(Card('A', 'H')))
+		self.assertEqual(str(self.card4), str(Card(10, 'd')))
 		
 	def test_printCard(self):
 		self.assertEqual(str(self.card1), '2C') 

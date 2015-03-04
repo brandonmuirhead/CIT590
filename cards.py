@@ -1,9 +1,19 @@
+#cards.py
+#author Brandon Muirhead
+#creates classes for Card and Deck
+
 import random  # needed for shuffling a Deck
 
 class Card(object):
 	
 	def __init__(self, r, s):
-		self.r = r
+		if type(r) is int:
+			self.r = r
+		else:
+			r = r.upper()				#makes sure that character is uppercase
+			self.r = r
+		
+		s = s.upper()
 		self.s = s
 		
 	def __str__(self):
@@ -28,7 +38,7 @@ class Deck():
 		
 		for i in rank:
 			for j in suit:
-				card = Card(i, j)	#create card with each suit for every rank
+				card = Card(i, j)		#create card with each suit for every rank
 				self.__deck.append(card)
 	
 	def shuffle(self):
@@ -58,8 +68,8 @@ def main():
 	deck1 = Deck()
 	deck1.shuffle()
 	print deck1
-
-	 
+	print deck1.deal()
+	print deck1
 
 
 if __name__ == '__main__':

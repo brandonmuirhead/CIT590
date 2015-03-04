@@ -5,12 +5,11 @@
 #Question 1
 def sameAB(abstring):
 	'''tests whether string has same number of a's and b's'''
-	newstring = abstring[:]
-	
-	if newstring[0] == newstring[-1]:
-		return len(newstring) == len(abstring)/2 
-	return sameAB(newstring[1:])
-	
+	if len(abstring) == 0:											#base case
+		return True
+	if abstring[0] == abstring[-1]:
+		return False
+	return sameAB(abstring[1:-1])
 
 #Question 2
 def binary_search(lst, val):
@@ -51,16 +50,12 @@ def meamers(filename):
 		return len([x for x in lines if 'MEAM' in x])				#makes a list of mentions of 'MEAM' and gives # of occurrences
 
 
-
 #Question 6
 def most_frequent_alphabet(frequency_dictionary):
 	'''Returns the letter that appears the most times in a dictionary'''
-	dlist = frequency_dictionary.items()							#dictionary to list of k,v pairs
-	high = reduce((lambda a,b: a if (a[1] > b[1]) else b), dlist)	#returns k,v pair with highest frequency
-	return [a[0] for a in dlist if a[1] == high[1]]					#returns all letters with the high frequency
-
+	#uses reduce function to get high pair, then use list comprehension to check for multiple pairs with high score
+	return [a[0] for a in frequency_dictionary.items() if a[1] == reduce((lambda a,b: a if (a[1] > b[1]) else b), frequency_dictionary.items())[1]]
 
 
 if __name__ == '__main__':
-	s = {'a':2, 'b':6, 'c':40, 'd':40, 'e':5}
-	print most_frequent_alphabet(s)
+	print meanie([1, 2, 3, 4])
