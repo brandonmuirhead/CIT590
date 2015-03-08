@@ -21,41 +21,41 @@ def binary_search(lst, val):
 		return True
 	elif val < mid:
 		return binary_search([x for x in lst if x < mid], val)		#get items in list less than mid point
-	elif val > mid:
+	else: 
 		return binary_search([x for x in lst if x > mid], val)		#get items in list greater than mid point
 
-
 #Question 3
-def flatten(lst):
+def flatten(lst_of_lst):
 	'''takes a list of lists and flattens to a 1D list'''
-	if lst == []:													#base case returns empty list
-		return lst
-	if isinstance(lst[0], list):									#tests to see if element is a list
-		return flatten(lst[0]) + flatten(lst[1:])					#if first element is a list, still need to check rest of list
+	if lst_of_lst == []:											#base case returns empty list
+		return lst_of_lst
+	if isinstance(lst_of_lst[0], list):								#tests to see if element is a list
+		return flatten(lst_of_lst[0]) + flatten(lst_of_lst[1:])		#if first element is a list, still need to check rest of list
 	else:
-		return lst[:1] + flatten(lst[1:])							#uses [:1] to return first element as a list. Second part returns empty list if list only has 1 element.
-	
+		return lst_of_lst[:1] + flatten(lst_of_lst[1:])				#uses [:1] to return first element as a list. Second part returns empty list if list only has 1 element.
 
 #Question 4
 def initials(lst):
-	'''creates list of initials of strings passed in as names.'''
-	return [name.split()[0][0] + '.' + name.split()[1][0] + '.' for name in lst]
-
+	'''creates list of initials of strings passed in as names'''
+	return [name.split()[0][0] + '.' + name.split()[-1][0] + '.' for name in lst]
 
 #Question 5
 def meamers(filename):
-	'''Counts number of MEAM students in a file.'''
-	with open(filename, 'r') as f:
-		lines = [line for line in f]								#puts rows into a list
-		return len([x for x in lines if 'MEAM' in x])				#makes a list of mentions of 'MEAM' and gives # of occurrences
-
+	'''counts number of MEAM students in a file.'''
+	with open(filename, 'r') as f: return len([x for x in [line for line in f] if 'MEAM' in x])
 
 #Question 6
 def most_frequent_alphabet(frequency_dictionary):
-	'''Returns the letter that appears the most times in a dictionary'''
-	#uses reduce function to get high pair, then use list comprehension to check for multiple pairs with high score
-	return [a[0] for a in frequency_dictionary.items() if a[1] == reduce((lambda a,b: a if (a[1] > b[1]) else b), frequency_dictionary.items())[1]]
+	'''returns the letter that has the highest frequency from a dictionary'''
+	return [a[0] for a in frequency_dictionary.items() if a[1] == reduce(lambda a,b: a if a[1] > b[1] else b, frequency_dictionary.items())[1]]
 
 
 if __name__ == '__main__':
-	print meanie([1, 2, 3, 4])
+
+
+##	print sameAB('aaabb')
+##	print binary_search([1,2,3,4,5], 2)
+##	print flatten([1,1,[1,1,[1]],1,[1,1,[1,[1,[],1]]]])
+##	print initials(['Brandon Muirhead', 'Jenni Sue Muirhead', 'Dave Duck'])
+##	print meamers('Names.csv')
+##	print most_frequent_alphabet({'a':3, 'b':5, 'c':12, 'd':12})

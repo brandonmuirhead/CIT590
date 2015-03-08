@@ -47,7 +47,8 @@ class Deck():
 		return self.__deck
 		
 	def get_deck(self):
-		return self.__deck
+		deckList = [str(card) for card in self.__deck] 
+		return deckList
 		
 	def deal(self):
 		return self.__deck.pop()
@@ -56,19 +57,13 @@ class Deck():
 		'''Represents the whole deck as a string for printing'''
 		deck = self.get_deck()
 		stringList = ''
-		count = 0
 		for card in deck:
-			deck[count] = str(card)		#converts card objects in list to strings
-			count += 1
-		for j in deck:
-			stringList += j + '\n'		#prints strings on new rows
+			stringList += card + '\n'	#prints strings on new rows
 		return stringList 
 
 def main():
 	deck1 = Deck()
 	deck1.shuffle()
-	print deck1
-	print deck1.deal()
 	print deck1
 
 
